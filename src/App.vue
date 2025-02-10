@@ -11,10 +11,10 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="../src/components/icons/aleeza.vue">Aleeza</RouterLink>
-        <RouterLink to="../src/components/icons/alejandro.vue">Alejandro</RouterLink>
-        <RouterLink to="../src/components/icons/erika.vue">Érika</RouterLink>
-        <RouterLink to="../src/components/icons/igor.vue">Igor</RouterLink>
+        <RouterLink to="/vistaaleeza">Aleeza</RouterLink>
+        <RouterLink to="/vistaalejandro">Alejandro</RouterLink>
+        <RouterLink to="/vistaerika">Érika</RouterLink>
+        <RouterLink to="/vistaigor">Igor</RouterLink>
       </nav>
     </div>
   </header>
