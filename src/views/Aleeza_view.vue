@@ -1,10 +1,10 @@
 <script setup>
 //import Igor from '../components/igor.vue'
-import igor from '../components/igor.vue'
+import Aleeza from '../components/Aleeza.vue'
 </script>
 
 <template>
   <main>
-    <igor />
+    <Aleeza/>
   </main>
 </template>
