@@ -15,6 +15,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/vistaalejandro">Alejandro</RouterLink>
         <RouterLink to="/vistaerika">Érika</RouterLink>
         <RouterLink to="/vistaigor">Igor</RouterLink>
+        <RouterLink to="/comun">Común</RouterLink>
       </nav>
     </div>
   </header>

@@ -33,6 +33,13 @@ const router = createRouter({
       name: 'Contador Igor',
       component: () => import('../views/Igor_view.vue'),
     },
+
+  
+    {
+      path: '/comun',
+      name: 'Página común',
+      component: () => import('../views/Comun_view.vue'),
+    },
   ],
 })
 
