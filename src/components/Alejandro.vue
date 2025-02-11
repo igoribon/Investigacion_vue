@@ -23,12 +23,12 @@ h2 {
 <script setup>
 import {ref, computed} from 'vue';
 
-const nombre = ref(' ');
+const nombre = ref('');
 const horaActual = new Date().getHours();
 
 const saludo = computed(() => {
 
-    if (horaActual >= 5 && horaActual <  12){
+    if (horaActual > 12){
         return 'Buenos días';
     } else if (horaActual >= 12 && horaActual < 20){
         return 'Buenas tardes';
@@ -39,7 +39,7 @@ const saludo = computed(() => {
 
 const meridiano = computed(() => {
 
-    if (horaActual >= 12 && horaActual){
+    if (horaActual < 12 ){
         return 'am'
     } else {
         return 'pm'
