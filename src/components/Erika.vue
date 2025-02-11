@@ -1,107 +1,91 @@
 <template>
-    <div id="todolist">
+  <div id="todolist">
+      <section class="tareas">
+          <input type="text" id="titulo" placeholder="Tarea">
+          <input type="number" id="tiempo" placeholder="Horas" min="1" step="1">
+          <button @click="task" class="task button">
+              <img class="icon" src="../assets/mas.png" alt="Agregar tarea" style="width: 25px;">
+          </button>
+      </section>
 
-        <section class="tareas">
-            <input type="text" name="" id="titulo" placeholder="Tarea">
-            <input type="number" name="" id="tiempo" placeholder="Horas" min="1" step="1">
-            <button @click="task" class="task button">
-                <img class="icon" src="../assets/mas.png" alt="Agregar tarea" style="width: 25px;">
-            </button>
-        </section>
+      <section v-if="tasks.length > 0" class="section_tareas">
+          <div class="listaTareas">
+              <ul>
+                  <li v-for="(task, key) in tasks" :key="key">
+                      {{ task.title }} -> {{ task.time }} horas 
+                      <button @click="borrar(key)" class="borrar button">
+                          <img class="icon" src="../assets/borrar.png" alt="Borrar tarea" style="width: 25px;">
+                      </button>
+                  </li>
+              </ul>
+          </div>
 
-        <section v-if="tasks.lenght > 0" class="section_tareas">
-            <div class="listaTareas">
-                <ul>
-                    <li v-for="(task, key) in tasks" :key="key">
-                        {{ titulo }} -> {{ tiempo }} horas 
-                        <button @click="borrar" class="borrar button">
-                            <img class="icon" src="../assets/borrar.png" alt="Borrar tarea" style="width: 25px;">
-                        </button>
-                    </li>
-                </ul>>
-            </div>
+          <section class="horas">
+              <h2>Tiempo total: {{ totalHoras }} horas</h2>
+          </section>
+      </section>
 
-            <section class="horas">
-                <h2>Tiempo total: {{ totalHoras }} horas</h2>
-            </section>
-        </section>
-
-        <section v-else class="sinTareas">
-            <h2>No hay tareas por el momento</h2>
-        </section>
-    </div>
+      <section v-else class="sinTareas">
+          <h2>No hay tareas por el momento</h2>
+      </section>
+  </div>
 </template>
-  
-
 
 <script>
- export default {
-    data() {
-        return {
-            tasks: [],
-            newTask: {
-                title: "",
-                time: 0,
-            }
-        }
-    },
-    methods: {
-        task() {
-            const title = document.getElementById("titulo").value;
-            const time = parseInt(document.getElementById("tiempo").value);
+export default {
+  data() {
+      return {
+          tasks: [],
+          newTask: {
+              title: "",
+              time: 0,
+          }
+      }
+  },
+  methods: {
+      task() {
+          const title = document.getElementById("titulo").value;
+          const time = parseInt(document.getElementById("tiempo").value);
 
-            if (title !== '' & time !== NaN) {
-                this.newTask.title = title
-                this.newTask.time = time
-                this.tasks.push(this.newTask)
+          if (title !== '' && !isNaN(time)) {
+              this.tasks.push({
+                  title: title,
+                  time: time
+              });
 
-                this.newTask = {
-                    title: "",
-                    time: 0,
-                }
-            } else {
-                alert('La tarea y el tiempo deben tener un valor correcto')
-            }
+              this.newTask = {
+                  title: "",
+                  time: 0,
+              };
+          } else {
+              alert('La tarea y el tiempo deben tener un valor correcto');
+          }
 
-            localStorage.setItem('tasks', JSON.stringify(this.tasks))
-        },
+          localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      },
 
-        borrar(taskIndex) {
-            const toDelete = taskIndex.path[2]
-            const arrayTasks = Array.from(taskIndex.path[3].children)
-
-            let index
-
-            arrayTasks.forEach((task, key) => {
-                if(task === toDelete) {
-                    index === key
-                }
-            })
-
-            this.tasks.splice(index, 1)
-            localStorage.setItem('tasks', JSON.stringify(this.tasks))
-        }
-    },
-
-    computed: {
-    totalTime() {
-      let total = 0
-      this.tasks.forEach(task => {
-        total += parseInt(task.time)
-      })
-      return total
-        }
-    },
-
+      borrar(taskIndex) {
+          this.tasks.splice(taskIndex, 1);
+          localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      }
+  },
+  computed: {
+      totalHoras() {
+          let total = 0;
+          this.tasks.forEach(task => {
+              total += parseInt(task.time);
+          });
+          return total;
+      }
+  },
   created() {
-    const tasks = localStorage.getItem('tasks')
-    if(tasks) {
-      this.tasks = JSON.parse(tasks) || []
-        }
-    }
- }
+      const tasks = localStorage.getItem('tasks');
+      if (tasks) {
+          this.tasks = JSON.parse(tasks) || [];
+      }
+  }
+}
 </script>
-
 
 
 <style lang="scss">
