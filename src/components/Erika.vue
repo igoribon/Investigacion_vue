@@ -1,4 +1,5 @@
 <template>
+
   <div id="todolist">
       <section class="tareas">
           <input type="text" id="titulo" placeholder="Tarea">
@@ -86,7 +87,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
