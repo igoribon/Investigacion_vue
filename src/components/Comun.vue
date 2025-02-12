@@ -13,7 +13,7 @@
             <li v-for="dia_de_la_suerte in horoscopo" v-bind:key="dia_de_la_suerte.dia_de_la_suerte">
                {{ dia_de_la_suerte.dia_de_la_suerte }}: {{ dia_de_la_suerte.horoscopo }}
             </li>
-            <li v-for="dia_del_amor in horoscopo" v-bind:key="dia_del_amor.dia_del_amor">
+            <li v-for="dia_del_amor in horoscopo" git v-bind:key="dia_del_amor.dia_del_amor">
                 {{ dia_del_amor.dia_del_amor }}: {{ dia_del_amor.horoscopo }}
             </li>
             <li v-for="amistad in horoscopo" v-bind:key="amistad.amistad">
