@@ -8,7 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/Logo_investigacion_vuepg.jpg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="Proyecto de investigación Vue"/>
+      <HelloWorld msg="Proyecto de investigación Vue" />
 
       <nav>
         <RouterLink to="/vistaaleeza">Aleeza</RouterLink>

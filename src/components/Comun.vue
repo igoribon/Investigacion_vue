@@ -3,7 +3,7 @@
 
 </template>
 
-<script setuo>
+<script setup>
 
 </script>
 
