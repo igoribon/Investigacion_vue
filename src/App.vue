@@ -8,7 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/Logo_investigacion_vuepg.jpg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HelloWorld msg="Proyecto de investigación Vue"" />
 
       <nav>
         <RouterLink to="/vistaaleeza">Aleeza</RouterLink>
@@ -31,12 +31,12 @@ header {
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
   margin-top: 2rem;
 }
