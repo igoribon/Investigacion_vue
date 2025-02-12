@@ -1,0 +1,39 @@
+[
+    {
+      "signo": "Aries",
+      "horoscopo": "Hoy es un día para tomar decisiones importantes. Confía en tu intuición.",
+      "dia_de_la_suerte": "Viernes",
+      "dia_del_amor": "Martes",
+      "amistad": "Un amigo del pasado podría reaparecer con buenas noticias.",
+      "trabajo": "Momento ideal para enfocarte en proyectos creativos.",
+      "numero_de_la_suerte": 7
+    },
+    {
+      "signo": "Tauro",
+      "horoscopo": "Se presentarán oportunidades inesperadas. Mantén la mente abierta.",
+      "dia_de_la_suerte": "Jueves",
+      "dia_del_amor": "Domingo",
+      "amistad": "Una conversación sincera fortalecerá lazos.",
+      "trabajo": "Es hora de demostrar tu talento y asumir nuevos retos.",
+      "numero_de_la_suerte": 22
+    },
+    {
+      "signo": "Géminis",
+      "horoscopo": "Tu energía está en su punto máximo. Aprovecha para iniciar nuevos proyectos.",
+      "dia_de_la_suerte": "Miércoles",
+      "dia_del_amor": "Sábado",
+      "amistad": "Alguien cercano necesitará tu apoyo emocional.",
+      "trabajo": "Se avecinan cambios positivos en tu carrera.",
+      "numero_de_la_suerte": 5
+    },
+    {
+      "signo": "Cáncer",
+      "horoscopo": "Es un buen día para reflexionar sobre tus metas personales.",
+      "dia_de_la_suerte": "Lunes",
+      "dia_del_amor": "Viernes",
+      "amistad": "Un nuevo vínculo podría traer alegría a tu vida.",
+      "trabajo": "Tu esfuerzo será reconocido por tus superiores.",
+      "numero_de_la_suerte": 9
+    }
+  ]
+  

@@ -13,9 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/vistaaleeza">Aleeza</RouterLink>
         <RouterLink to="/vistaalejandro">Alejandro</RouterLink>
-        <RouterLink to="/vistaerika">Érika</RouterLink>
+        <RouterLink to="/vistaerika">Erika</RouterLink>
         <RouterLink to="/vistaigor">Igor</RouterLink>
-        <RouterLink to="/comun">Común</RouterLink>
+        <RouterLink to="/comun">Comun</RouterLink>
       </nav>
     </div>
   </header>
