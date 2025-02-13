@@ -1,4 +1,5 @@
-[
+{
+  "signos":[
     {
       "signo": "Aries",
       "horoscopo": "Hoy es un día para tomar decisiones importantes. Confía en tu intuición.",
@@ -34,6 +35,78 @@
       "amistad": "Un nuevo vínculo podría traer alegría a tu vida.",
       "trabajo": "Tu esfuerzo será reconocido por tus superiores.",
       "numero_de_la_suerte": 9
+    },
+    {
+      "signo": "Leo",
+      "horoscopo": "Tu carisma estará en su punto más alto. Usa esto a tu favor.",
+      "dia_de_la_suerte": "Domingo",
+      "dia_del_amor": "Jueves",
+      "amistad": "Momento ideal para hacer nuevas amistades.",
+      "trabajo": "Un ascenso o reconocimiento está en camino.",
+      "numero_de_la_suerte": 1
+    },
+    {
+      "signo": "Virgo",
+      "horoscopo": "Pequeños detalles pueden hacer una gran diferencia en tu día.",
+      "dia_de_la_suerte": "Miércoles",
+      "dia_del_amor": "Sábado",
+      "amistad": "Escucha a quienes buscan tu consejo.",
+      "trabajo": "Tu organización será clave para el éxito.",
+      "numero_de_la_suerte": 14
+    },
+    {
+      "signo": "Libra",
+      "horoscopo": "Busca el equilibrio entre tu vida personal y laboral.",
+      "dia_de_la_suerte": "Viernes",
+      "dia_del_amor": "Lunes",
+      "amistad": "Una salida inesperada con amigos traerá alegría.",
+      "trabajo": "Un nuevo proyecto te entusiasmará.",
+      "numero_de_la_suerte": 6
+    },
+    {
+      "signo": "Escorpio",
+      "horoscopo": "No temas expresar lo que sientes, hoy es un buen día para ello.",
+      "dia_de_la_suerte": "Martes",
+      "dia_del_amor": "Domingo",
+      "amistad": "Alguien te sorprenderá con un gesto amable.",
+      "trabajo": "Mantente firme en tus decisiones.",
+      "numero_de_la_suerte": 13
+    },
+    {
+      "signo": "Sagitario",
+      "horoscopo": "Tu espíritu aventurero se verá recompensado.",
+      "dia_de_la_suerte": "Jueves",
+      "dia_del_amor": "Viernes",
+      "amistad": "Viajar o salir de la rutina te hará bien.",
+      "trabajo": "Buena jornada para hacer contactos profesionales.",
+      "numero_de_la_suerte": 3
+    },
+    {
+      "signo": "Capricornio",
+      "horoscopo": "Tu disciplina te llevará al éxito. Sigue adelante.",
+      "dia_de_la_suerte": "Sábado",
+      "dia_del_amor": "Miércoles",
+      "amistad": "Una amistad se fortalecerá a través de una conversación honesta.",
+      "trabajo": "El esfuerzo extra valdrá la pena.",
+      "numero_de_la_suerte": 8
+    },
+    {
+      "signo": "Acuario",
+      "horoscopo": "Hoy podrías encontrar inspiración en lo inesperado.",
+      "dia_de_la_suerte": "Lunes",
+      "dia_del_amor": "Martes",
+      "amistad": "Alguien te buscará para compartir una idea interesante.",
+      "trabajo": "Piensa fuera de la caja, una idea innovadora podría surgir.",
+      "numero_de_la_suerte": 11
+    },
+    {
+      "signo": "Piscis",
+      "horoscopo": "Las emociones estarán a flor de piel. Aprovecha para expresarte.",
+      "dia_de_la_suerte": "Domingo",
+      "dia_del_amor": "Jueves",
+      "amistad": "Tu intuición te ayudará a comprender mejor a los demás.",
+      "trabajo": "Tu creatividad será tu mejor aliada hoy.",
+      "numero_de_la_suerte": 10
     }
   ]
-  
+}

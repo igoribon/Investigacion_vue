@@ -1,36 +1,3 @@
-<template>
-    <div class="cuerpo">
-        <h2>Hola</h2>
-        <!-- <input type="text" class="cuadrito" placeholder="Escribe tu nombre"> -->
-            <!-- <input type="date" class="cuadrito" v-model="birthdate" placeholder="Elige tu fecha de nacimiento"> -->
-        <ul id="aztro">
-            <li v-for="signo in horoscopo" v-bind:key="signo.signo">
-                {{ signo.signo }}: {{ signo.horoscopo }}
-            </li>
-            <li v-for="horoscopo in horoscopo" v-bind:key="horoscopo.horoscopo">
-               {{ horoscopo.horoscopo }}: {{ horoscopo.horoscopo }}
-            </li>
-            <li v-for="dia_de_la_suerte in horoscopo" v-bind:key="dia_de_la_suerte.dia_de_la_suerte">
-               {{ dia_de_la_suerte.dia_de_la_suerte }}: {{ dia_de_la_suerte.horoscopo }}
-            </li>
-            <li v-for="dia_del_amor in horoscopo" git v-bind:key="dia_del_amor.dia_del_amor">
-                {{ dia_del_amor.dia_del_amor }}: {{ dia_del_amor.horoscopo }}
-            </li>
-            <li v-for="amistad in horoscopo" v-bind:key="amistad.amistad">
-                {{ amistad.amistad }}: {{ amistad.horoscopo }}
-            </li>
-            <li v-for="trabajo in horoscopo" v-bind:key="trabajo.trabajo">
-                {{ trabajo.trabajo }}: {{ trabajo.horoscopo }}
-            </li>
-            <li v-for="numero_de_la_suerte in horoscopo" v-bind:key="numero_de_la_suerte.numero_de_la_suerte">
-                {{ numero_de_la_suerte.numero_de_la_suerte }}: {{ numero_de_la_suerte.horoscopo }}
-            </li>
-        
-        </ul>
-
-    </div>
-</template>
-
 <style scoped>
     .cuerpo {
         width: 100%;
@@ -49,6 +16,7 @@
         margin-top: 5rem;
         display: block;
         margin:  auto;
+        width: 12rem;
     }
 
     #aztro {
@@ -60,32 +28,94 @@
     }
 
     .texto {
-        background-color:blueviolet;
-        color: black;
+        background-color: rgba(138, 43, 226, 0.8);
+        color: white;
         text-align: center;
         padding: 1rem;
         border-radius: 1rem;
+        margin: 2rem auto;
+        max-width: 600px;
+    }
+
+    h3 {
+        color: #ffd700;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
     }
 </style>
 
+<template>
+    <div class="cuerpo">
+        <h2>Horóscopo del día</h2>
+        <!-- Añadimos v-model al input y un evento @input -->
+        <select class="cuadrito" v-model="signoInput" v-on:change="filtrarSigno">
+            <option value="Aries">Aries</option>
+            <option value="Tauro">Tauro</option>
+            <option value="Géminis">Géminis</option>
+            <option value="Cáncer">Cáncer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Escorpio">Escorpio</option>
+            <option value="Sagitario">Sagitario</option>
+            <option value="Capricornio">Capricornio</option>
+            <option value="Acuario">Acuario</option>
+            <option value="Piscis">Piscis</option>
+        </select>
+        <article>
+            <!-- Modificamos para mostrar solo el signo filtrado -->
+            <ul id="aztro" v-if="signoFiltrado">
+                <li class="texto">
+                    <h3>{{ signoFiltrado.signo }}</h3>
+                    <p>Predicción: {{ signoFiltrado.horoscopo }}</p>
+                    <p>Día de la suerte: {{ signoFiltrado.dia_de_la_suerte }}</p>
+                    <p>Día del amor: {{ signoFiltrado.dia_del_amor }}</p>
+                    <p>Amistad compatible: {{ signoFiltrado.amistad }}</p>
+                    <p>Trabajo: {{ signoFiltrado.trabajo }}</p>
+                    <p>Número de la suerte: {{ signoFiltrado.numero_de_la_suerte }}</p>
+                </li>
+            </ul>
+            <!-- Mensaje cuando no se encuentra el signo -->
+            <p v-else-if="signoInput" class="texto">
+                No se encontró el signo zodiacal
+            </p>
+        </article>
+    </div>
+</template>
+
 <script setup>
-    import {ref, onMounted} from 'vue';
+import { ref, onMounted } from 'vue'  
 
-    const horoscopo = ref([])
+const horoscopo = ref({})
+const signoInput = ref('')
+const signoFiltrado = ref(null)
 
-    const fetchHoroscopo = async () => {
-        try {
-            const response = await fetch ('/horoscopo.json')
-            if (!response.ok) {
-                throw new Error('Error al cargar los datos')
-            }
-            const datos = await response.json()
-            horoscopo.value = data
-        } catch (error) {
-            console.error('Error al cargar los datos', error)
+const filtrarSigno = () => {
+    if (!horoscopo.value.signos || !signoInput.value) {
+        signoFiltrado.value = null
+        return
+    }
+    
+    const signoEncontrado = horoscopo.value.signos.find(signo => 
+        signo.signo?.toLowerCase() === signoInput.value.toLowerCase()
+    )
+    
+    signoFiltrado.value = signoEncontrado
+}
+
+const fetchHoroscopo = async () => {
+    try {
+        const response = await fetch('/horoscopo.json')
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos')
         }
-    } //La función onMounted asegura que fetchProducts se ejecute después 
-    onMounted(fetchHoroscopo); // de que el componente se haya montado.
+        const datos = await response.json()
+        horoscopo.value = datos
+    } catch (error) {
+        console.error('Error al cargar los datos:', error)
+    }
+}
 
+onMounted(fetchHoroscopo)
 </script>
 
