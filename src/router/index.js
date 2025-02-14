@@ -10,6 +10,12 @@ const router = createRouter({
       component: HomeView,
     },
 
+    {
+      path: '/TheWelcome',
+      name: 'The Welcome',
+      component: () => import('../views/HomeView.vue'),
+    },
+
 {
   path: '/vistaaleeza',
   name: 'Color Aleeza',

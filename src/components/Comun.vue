@@ -42,6 +42,29 @@
         margin-bottom: 1rem;
         font-size: 1.5rem;
     }
+    img{
+        width: 8rem;
+    }
+    #cartas li{
+        display: flex;   
+        flex-wrap: wrap;
+    }
+    #cartas h3{
+        width: 33%;   
+    }
+    #cartas img{
+        margin: 0 1.8rem;
+    }
+
+.carta-container img {
+    width: 8rem;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.carta-container img:hover {
+    transform: scale(1.1);
+}
 </style>
 
 <template>
@@ -83,9 +106,31 @@
         <article>
             <ul id="cartas" v-if="cartaSeleccionada">
                 <li>
-                    <h3>Presente:</h3>
-                    <img v-bind:src="cartaSeleccionada.imagen" v-bind:alt="cartaSeleccionada.nombre">
-                </li>        
+                    <div class="carta-container">
+                        <h3>Pasado:</h3>
+                        <img 
+                            :src="cartasVolteadas.pasado ? cartaSeleccionada.pasado.imagen : '/cartaDorso.jpg'"
+                            :alt="cartaSeleccionada.pasado.nombre"
+                            @click="voltear('pasado')"
+                        >
+                    </div>
+                    <div class="carta-container">
+                        <h3>Presente:</h3>
+                        <img 
+                            :src="cartasVolteadas.presente ? cartaSeleccionada.presente.imagen : '/cartaDorso.jpg'"
+                            :alt="cartaSeleccionada.presente.nombre"
+                            @click="voltear('presente')"
+                        >
+                    </div>
+                    <div class="carta-container">
+                        <h3>Futuro:</h3>
+                        <img 
+                            :src="cartasVolteadas.futuro ? cartaSeleccionada.futuro.imagen : '/cartaDorso.jpg'"
+                            :alt="cartaSeleccionada.futuro.nombre"
+                            @click="voltear('futuro')"
+                        >
+                    </div>
+                </li>
             </ul>
         </article>
     </div>
@@ -100,7 +145,11 @@ const signoInput = ref('')
 const signoFiltrado = ref(null)
 const cartaSeleccionada = ref(null)
 
+const imgsrc = ref("/public/cartaDorso.jpg")
+const newsrc = ref('cartaSeleccionada.presente.imagen')
+
 const filtrarSigno = () => {
+    newsrc.value = imgsrc
     if (!horoscopo.value.signos || !signoInput.value) {
         signoFiltrado.value = null
         return
@@ -115,10 +164,39 @@ const filtrarSigno = () => {
 }
 const seleccionarCartaAleatoria = () => {
     if (arcanos.value.arcanos_mayores) {
-        const indiceAleatorio = Math.floor(Math.random() * arcanos.value.arcanos_mayores.length)
-        cartaSeleccionada.value = arcanos.value.arcanos_mayores[indiceAleatorio]
+        // Seleccionar 3 cartas aleatorias diferentes
+        const cartasSeleccionadas = [];
+        const totalCartas = arcanos.value.arcanos_mayores.length;
+        const numerosUsados = new Set();
+
+        while (cartasSeleccionadas.length < 3) {
+            const indiceAleatorio = Math.floor(Math.random() * totalCartas);
+            if (!numerosUsados.has(indiceAleatorio)) {
+                numerosUsados.add(indiceAleatorio);
+                cartasSeleccionadas.push(arcanos.value.arcanos_mayores[indiceAleatorio]);
+            }
+        }
+
+        cartaSeleccionada.value = {
+            pasado: cartasSeleccionadas[0],
+            presente: cartasSeleccionadas[1],
+            futuro: cartasSeleccionadas[2]
+        };
     }
-}   
+}
+
+// Añadir estados para controlar las cartas volteadas
+const cartasVolteadas = ref({
+    pasado: false,
+    presente: false,
+    futuro: false
+})
+
+// Modificar la función voltear para recibir el tipo de carta
+const voltear = (tipo) => {
+    cartasVolteadas.value[tipo] = !cartasVolteadas.value[tipo]
+}
+
 const fetchCarta = async () => {
     try {
         const response = await fetch ('/arcanos.json')

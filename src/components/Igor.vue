@@ -28,7 +28,7 @@
 // Contador
 import { computed, ref } from "vue";
 //Importamos el complemento hijo para que pueda capturar los valores de este componente
-import ValoresDisplay from "./Valores.vue";
+import ValoresDisplay from "./valores.vue";
 
 const contador = ref(0);
 //Aquí definimos las variables de totalClicks y sumValores que se usarán en el componente hijo. También definimos mostrarValores que se usará para mostrar u ocultar los valores.
@@ -93,3 +93,4 @@ const comprobacion = computed(() => {
   font-size: 2rem;
 }
 </style>
+
