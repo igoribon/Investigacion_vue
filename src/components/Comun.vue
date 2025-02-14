@@ -80,6 +80,14 @@
                 No se encontró el signo zodiacal
             </p>
         </article>
+        <article>
+            <ul id="cartas" v-if="cartaSeleccionada">
+                <li>
+                    <h3>Presente:</h3>
+                    <img v-bind:src="cartaSeleccionada.imagen" v-bind:alt="cartaSeleccionada.nombre">
+                </li>        
+            </ul>
+        </article>
     </div>
 </template>
 
@@ -87,8 +95,10 @@
 import { ref, onMounted } from 'vue'  
 
 const horoscopo = ref({})
+const arcanos = ref([])
 const signoInput = ref('')
 const signoFiltrado = ref(null)
+const cartaSeleccionada = ref(null)
 
 const filtrarSigno = () => {
     if (!horoscopo.value.signos || !signoInput.value) {
@@ -101,7 +111,27 @@ const filtrarSigno = () => {
     )
     
     signoFiltrado.value = signoEncontrado
+    seleccionarCartaAleatoria()
 }
+const seleccionarCartaAleatoria = () => {
+    if (arcanos.value.arcanos_mayores) {
+        const indiceAleatorio = Math.floor(Math.random() * arcanos.value.arcanos_mayores.length)
+        cartaSeleccionada.value = arcanos.value.arcanos_mayores[indiceAleatorio]
+    }
+}   
+const fetchCarta = async () => {
+    try {
+        const response = await fetch ('/arcanos.json')
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos')
+        }
+        const datos = await response.json()
+        arcanos.value = datos
+    } catch (error) {
+        console.error('Error al cargar los datos:', error)
+    }
+}
+onMounted(fetchCarta)
 
 const fetchHoroscopo = async () => {
     try {
