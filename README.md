@@ -64,10 +64,13 @@ Una aplicación de "to do list" en la que indicar la tarea a realizar y las hora
 Práctica realizada por Igor.
 <br>
 En éste contador pordemos observar varios colores en los números: 0 está en azul, positivos en verde y negativos en rojo. Se muestran los valores en la parte inferior en la que aparece el número de clicks que hemos dado y la suma del número de arriba con los clicks. Utilizando v-if, v-else-if, v-show, @click, import.
+Esta página tiene dos componentes que funcionan como padre-hijo. El padre es el contador en sí que va registrando los clicks y el sumatorio de cada uno de los valores. El componente hijo se muestra al pulsar el botón correspondiente y recoge los valores registrados antes con su propio botón de ocultación.
+
+Este ejercicio sirve para ver cómo funcionan las comunicaciones entre componentes y el uso de los métodos Prop/Emit
 ![contador vacio](https://github.com/user-attachments/assets/f4e88960-5686-4e49-9b01-0d16bfef026d)
 ![contador valores](https://github.com/user-attachments/assets/9b3f084b-eb15-4006-90fd-2e10706cbe4f)
 ### 🌌 Horóscopo
-Práctica realizada por Alejandro y Érika.
+Práctica realizada por Alejandro, Érika e Igor.
 <br>
 En un fondo del cielo estrellado tenemos un desplegable donde podemos elegir nuestro horóscopo. Una vez elegido, nos aparece un cuadro de texto con diferentes características sobre lo que nos depara la semana. Un poco más abajo tenemos 3 cartas del tarot volteadas, al clickear sobre cada una de ellas, se gira y nos muestra la carta que nos ha tocado. Tiene un efecto de acercamiento. Para realizar éste pequeño proyecto hemos utilizado dos archivos Json: uno para poder cargar la información de cada signo zodiacal y otro para cargar las cartas de tarot. Para poder llevarlo a cabo hemos usado diferentes directivas: v-model, v-if, v-else-if. Para conectar el archivo con los archivos Json, hemos aplicado fetch junto con async await y realizado condicionales. Hemos aplicado un evento @click para que las cartas puedan girarse. Para ejecutar el código hemos aplicado el hook onMounted.
 ![hosoroscopo vacio](https://github.com/user-attachments/assets/6f2a5c6e-b63f-4c86-b8a7-1a74fac38e58)
