@@ -165,9 +165,10 @@
             signoFiltrado.value = null
             return
         }
-        
-        const signoEncontrado = horoscopo.value.signos.find(signo => 
-            signo.signo?.toLowerCase() === signoInput.value.toLowerCase()
+        // .find busca una coincidencia en el .json con el valor del select
+        // ? (opcional chaining) asegura que no se produzca un error si signo es null o undefined.
+        const signoEncontrado = horoscopo.value.signos.find(item => 
+            item.signo?.toLowerCase() === signoInput.value.toLowerCase()
         )
         
         signoFiltrado.value = signoEncontrado
@@ -175,28 +176,35 @@
     }
     const seleccionarCartaAleatoria = () => {
         if (arcanos.value.arcanos_mayores) {
-            // Seleccionar 3 cartas aleatorias diferentes
-            const cartasSeleccionadas = [];
+            // Crea un array vacío
+            const tresCartas = [];
+            // Selecciona el total de los elementos arcanos_mayores del .json
             const totalCartas = arcanos.value.arcanos_mayores.length;
+            // new Set() evita duplicados porque es un objeto de valores únicos
             const numerosUsados = new Set();
 
-            while (cartasSeleccionadas.length < 3) {
+            //Establece la longitud máxima del array en 3
+            while (tresCartas.length < 3) {
+                // Math.random genera un número 0 =< 1;
+                // Se multiplica * totalCartas
+                // Math.floor redondea al N entero menor
                 const indiceAleatorio = Math.floor(Math.random() * totalCartas);
                 if (!numerosUsados.has(indiceAleatorio)) {
                     numerosUsados.add(indiceAleatorio);
-                    cartasSeleccionadas.push(arcanos.value.arcanos_mayores[indiceAleatorio]);
+                    // Mete en el array los 3 números concordados al .json
+                    tresCartas.push(arcanos.value.arcanos_mayores[indiceAleatorio]);
                 }
             }
-
+            // Aquí se asigna cada número del array a una posición
             cartaSeleccionada.value = {
-                pasado: cartasSeleccionadas[0],
-                presente: cartasSeleccionadas[1],
-                futuro: cartasSeleccionadas[2]
+                pasado: tresCartas[0],
+                presente: tresCartas[1],
+                futuro: tresCartas[2]
             };
         }
     }
 
-    // Añadir estados para controlar las cartas volteadas
+    // Estados iniciales de las cartas
     const cartasVolteadas = ref({
         pasado: false,
         presente: false,
@@ -208,7 +216,7 @@
         futuro: 0
     })
 
-    // Corregir estilosCarta para que sea un computed simple
+    //  Define propiedades derivadas reactivas
     const estilosCarta = computed(() => ({
         pasado: {
             transform: `rotateY(${rotaciones.value.pasado}deg)`,
@@ -222,9 +230,9 @@
     }))
 
 
-    // Modificar la función voltear para recibir el tipo de carta
+    // Alterna los valores para manejar las cartas
     const voltear = (tipo) => {
-        rotaciones.value[tipo] = rotaciones.value[tipo] === 0 ? 180 : 0;
+        rotaciones.value[tipo] = rotaciones.value[tipo] === 0 ? 360 : 0;
         cartasVolteadas.value[tipo] = !cartasVolteadas.value[tipo];
     }
 
@@ -240,7 +248,6 @@
             console.error('Error al cargar los datos:', error)
         }
     }
-    onMounted(fetchCarta)
 
     const fetchHoroscopo = async () => {
         try {
@@ -255,6 +262,9 @@
         }
     }
 
-    onMounted(fetchHoroscopo)
+    onMounted(() => {
+    fetchCarta()
+    fetchHoroscopo()
+})
     </script>
 
