@@ -16,9 +16,13 @@
         margin-top: 5rem;
         display: block;
         margin:  auto;
-        width: 12rem;
+        width: 12rem;    
+    /*Alejandro*/
+        font-size: 1.5rem;
+        background-color: rgba(137, 43, 226, 0.699);
+        border: none;
+        border-radius: 0.5rem;
     }
-
     #aztro {
         text-align: center;
         color: white;
@@ -54,17 +58,18 @@
     }
     #cartas img{
         margin: 0 1.8rem;
+        transition: 1s;
     }
 
-.carta-container img {
-    width: 8rem;
-    transition: transform 0.6s;
-    cursor: pointer;
-}
-
-.carta-container img:hover {
-    transform: scale(1.1);
-}
+    .carta-container img {
+        width: 8rem;
+        transition: transform 0.6s;
+        cursor: pointer;
+    }
+    .carta-container img:hover {
+        transform: scale(1.1);
+    }
+    
 </style>
 
 <template>
@@ -72,7 +77,7 @@
         <h2>Horóscopo del día</h2>
         <!-- Añadimos v-model al input y un evento @input -->
         <select class="cuadrito" v-model="signoInput" v-on:change="filtrarSigno">
-            <option value="Aries">Aries</option>
+            <option class="coco" value="Aries">Aries</option>
             <option value="Tauro">Tauro</option>
             <option value="Géminis">Géminis</option>
             <option value="Cáncer">Cáncer</option>
@@ -111,6 +116,7 @@
                         <img 
                             :src="cartasVolteadas.pasado ? cartaSeleccionada.pasado.imagen : '/cartaDorso.jpg'"
                             :alt="cartaSeleccionada.pasado.nombre"
+                            :style="estilosCarta.pasado"
                             @click="voltear('pasado')"
                         >
                     </div>
@@ -119,6 +125,7 @@
                         <img 
                             :src="cartasVolteadas.presente ? cartaSeleccionada.presente.imagen : '/cartaDorso.jpg'"
                             :alt="cartaSeleccionada.presente.nombre"
+                            :style="estilosCarta.presente"
                             @click="voltear('presente')"
                         >
                     </div>
@@ -127,6 +134,7 @@
                         <img 
                             :src="cartasVolteadas.futuro ? cartaSeleccionada.futuro.imagen : '/cartaDorso.jpg'"
                             :alt="cartaSeleccionada.futuro.nombre"
+                            :style="estilosCarta.futuro"
                             @click="voltear('futuro')"
                         >
                     </div>
@@ -137,7 +145,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'  
+import { ref, onMounted, computed } from 'vue'  
 
 const horoscopo = ref({})
 const arcanos = ref([])
@@ -194,10 +202,33 @@ const cartasVolteadas = ref({
     presente: false,
     futuro: false
 })
+const rotaciones = ref({
+    pasado: 0,
+    presente: 0,
+    futuro: 0
+})
+
+// Corregir estilosCarta para que sea un computed simple
+const estilosCarta = computed(() => ({
+    pasado: {
+        transform: `rotateY(${rotaciones.value.pasado}deg)`,
+        transition: 'transform 0.6s'
+    },
+    presente: {
+        transform: `rotateY(${rotaciones.value.presente}deg)`,
+        transition: 'transform 0.6s'
+    },
+    futuro: {
+        transform: `rotateY(${rotaciones.value.futuro}deg)`,
+        transition: 'transform 0.6s'
+    }
+}))
+
 
 // Modificar la función voltear para recibir el tipo de carta
 const voltear = (tipo) => {
-    cartasVolteadas.value[tipo] = !cartasVolteadas.value[tipo]
+    rotaciones.value[tipo] = rotaciones.value[tipo] === 0 ? 180 : 0;
+    cartasVolteadas.value[tipo] = !cartasVolteadas.value[tipo];
 }
 
 const fetchCarta = async () => {
