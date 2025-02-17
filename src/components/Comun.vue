@@ -145,10 +145,13 @@ const signoInput = ref('')
 const signoFiltrado = ref(null)
 const cartaSeleccionada = ref(null)
 
-const imgsrc = ref("/public/cartaDorso.jpg")
-const newsrc = ref('cartaSeleccionada.presente.imagen')
-
 const filtrarSigno = () => {
+    const cartasVolteadas = ref({
+    pasado: false,
+    presente: false,
+    futuro: false
+})
+
     newsrc.value = imgsrc
     if (!horoscopo.value.signos || !signoInput.value) {
         signoFiltrado.value = null
