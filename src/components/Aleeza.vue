@@ -41,10 +41,10 @@ const cambiarColor = () => {
 };
 </script>
 <!--const colores = [...]: Esta es una lista de colores que el fondo puede tomar.
-const color = ref('white'): Define una variable llamada color, que inicialmente es white (blanco). El valor de color es el que se usa para cambiar el fondo.
-cambiarColor(): Es una función que cambia el valor de color a un color aleatorio de la lista colores cuando el usuario hace clic en el botón.
-Math.random() → Genera un número entre 0 y 1.
-* colores.length → Lo multiplica por la cantidad de colores.
-Math.floor(...) → Redondea hacia abajo para obtener un índice.
+const color = ref('white');: Define una variable reactiva color con valor inicial 'white'.
+const cambiarColor = () => { ... };: Define una función que cambia color a un color aleatorio de la lista colores.
+color.value = ... → Cambia el color del fondo.
 colores[...] → Toma un color de la lista.
-color.value = ... → Cambia el color del fondo.-->
+Math.floor(...) → Redondea hacia abajo para obtener un índice.
+Math.random() → Genera un número entre 0 y 1.
+* colores.length → Lo multiplica por la cantidad de colores.-->
