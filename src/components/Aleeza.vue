@@ -3,8 +3,7 @@
       <button @click="cambiarColor">Cambiar color</button>
     </div>
   </template>
-<!--Hay un <div> que ocupa toda la pantalla.
-Dentro hay un botón que, al hacer clic, cambia el color de fondo.
+<!-- El div ocupa toda la pantalla, y al hacer clic en el botón, el color de fondo cambia.
 :style="{ backgroundColor: color }", que aplica el color guardado en la variable color.-->
 
 <style scoped>
@@ -26,26 +25,22 @@ button {
 }
 </style>
 <!--Usas <style scoped> para que los estilos solo se apliquen al componente actual y no afecten a otros componentes.
-.fondo: Define cómo se ve el fondo (que ocupa toda la pantalla y tiene un cambio de color suave).
-button: Estiliza el botón (como el tamaño y el color del fondo).-->
+El div tiene un cambio de fondo suave y está centrado. El botón tiene un estilo básico.-->
 
 
   
 <script setup>
 import { ref } from 'vue';
 
-const colores = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+const colores = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];//lista de colores
 
-const color = ref('white');
+const color = ref('white');//Define una variable reactiva color con valor inicial 'white'
 
-const cambiarColor = () => {
+const cambiarColor = () => { //Define una función que cambia color a un color aleatorio de la lista colores
   color.value = colores[Math.floor(Math.random() * colores.length)];
 };
 </script>
 <!--<script setup> hace que el código sea más fácil de escribir y entender en Vue.
-const colores = [...]: Esta es una lista de colores que el fondo puede tomar.
-const color = ref('white');: Define una variable reactiva color con valor inicial 'white'.
-const cambiarColor = () => { ... };: Define una función que cambia color a un color aleatorio de la lista colores.
 color.value = ... → Cambia el color del fondo.
 colores[...] → Toma un color de la lista.
 Math.floor(...) → Redondea hacia abajo para obtener un índice.
