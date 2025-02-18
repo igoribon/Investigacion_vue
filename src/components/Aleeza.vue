@@ -24,7 +24,8 @@ button {
   border-radius: 5px;
 }
 </style>
-<!--.fondo: Define cómo se ve el fondo (que ocupa toda la pantalla y tiene un cambio de color suave).
+<!--Usas <style scoped> para que los estilos solo se apliquen al componente actual y no afecten a otros componentes.
+.fondo: Define cómo se ve el fondo (que ocupa toda la pantalla y tiene un cambio de color suave).
 button: Estiliza el botón (como el tamaño y el color del fondo).-->
 
 
@@ -40,7 +41,8 @@ const cambiarColor = () => {
   color.value = colores[Math.floor(Math.random() * colores.length)];
 };
 </script>
-<!--const colores = [...]: Esta es una lista de colores que el fondo puede tomar.
+<!--<script setup> hace que el código sea más fácil de escribir y entender en Vue.
+const colores = [...]: Esta es una lista de colores que el fondo puede tomar.
 const color = ref('white');: Define una variable reactiva color con valor inicial 'white'.
 const cambiarColor = () => { ... };: Define una función que cambia color a un color aleatorio de la lista colores.
 color.value = ... → Cambia el color del fondo.
