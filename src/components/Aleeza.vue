@@ -4,7 +4,8 @@
     </div>
   </template>
 <!--Hay un <div> que ocupa toda la pantalla.
-Dentro hay un botón que, al hacer clic, cambia el color de fondo.-->
+Dentro hay un botón que, al hacer clic, cambia el color de fondo.
+:style="{ backgroundColor: color }", que aplica el color guardado en la variable color.-->
 
 <style scoped>
 .fondo {
